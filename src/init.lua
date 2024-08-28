@@ -183,3 +183,27 @@ if getgenv then
 end
 
 return Library
+-- Assuming 'Library' is your main UI library
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Parent = Library.GUI
+ToggleButton.Size = UDim2.new(0, 100, 0, 30)
+ToggleButton.Position = UDim2.new(0, 10, 0, 10)
+ToggleButton.Text = "Toggle GUI"
+ToggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+local guiOpen = true
+
+ToggleButton.MouseButton1Click:Connect(function()
+    guiOpen = not guiOpen
+    Library.GUI.Enabled = guiOpen
+
+    if guiOpen then
+        ToggleButton.Text = "Close GUI"
+    else
+        ToggleButton.Text = "Open GUI"
+    end
+end)
+
+-- Set initial button text
+ToggleButton.Text = guiOpen and "Close GUI" or "Open GUI"
